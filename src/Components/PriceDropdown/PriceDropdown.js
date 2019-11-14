@@ -3,22 +3,22 @@ import { connect } from 'react-redux';
 
 class PriceDropdown extends Component {
 
-    // componentDidMount(){
-    //     this.props.dispatch({
-    //         type: 'FETCH_PRICES'
-    //     });
-    // }
+    componentDidMount(){
+        this.props.dispatch({
+            type: 'FETCH_PRICES'
+        });
+    }
 
     render() {
 
-        // const renderPriceDropdown = this.props.prices.map((range)=>{
-        //     return (<option key={range.id} value={range.id}>{range.price}</option>);
-        // })
+        const renderPriceDropdown = this.props.prices.map((range)=>{
+            return (<option key={range.id} value={range.id}>{range.price}</option>);
+        })
 
         return (
-            <select title="Select price range here" onChange={(event) => { this.props.handleInput(event, 'price') }}>
+            <select title="Select price range here" onChange={(event) => { this.props.handleInput(event, 'price') }} value={this.props.selectedPrice}>
                 <option value={0}>Select a price range</option>
-                {/* renderPriceDropdown */}
+                {renderPriceDropdown}
             </select>
         );
     }

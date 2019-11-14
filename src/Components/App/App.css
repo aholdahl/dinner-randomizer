@@ -5,14 +5,42 @@
     --secondary-font: Garamond, serif;
 }
 
-@supports (grid-area: auto){}
-/* Smart Phones, approximately */
-@media only screen and (min-width: 320px){}
-/* Tablets, approximately */
-@media only screen and (min-width: 480px){}
-/* Laptops, approximately */
-@media only screen and (min-width: 720px){}
-/* Desktops, approximately */
-@media only screen and (min-width: 1080px){}
-/* Televisions */
-@media only screen and (min-width: 1620px){}
+* {
+    /* border: 1px solid black; */
+    font-family: var(--primary-font);
+}
+
+h1 {
+    text-align: center;
+    text-transform: uppercase;
+}
+h2 {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 1rem;
+}
+
+h1, button {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 0.5rem;
+}
+
+input {
+    border: 1px solid lightgray;
+    padding: 0.25em;
+}
+
+@supports (grid-area: auto){
+    /* Smart Phones, approximately */
+    @media only screen and (min-width: 320px){}
+    /* Tablets, approximately */
+    @media only screen and (min-width: 480px){}
+    /* Laptops, approximately */
+    @media only screen and (min-width: 720px){}
+    /* Desktops, approximately */
+    @media only screen and (min-width: 1080px){}
+    /* Televisions */
+    @media only screen and (min-width: 1620px){}
+}

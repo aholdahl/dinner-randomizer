@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './Components/App/App.js';
 import * as serviceWorker from './serviceWorker';
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 import rootReducer from './redux/reducers';
@@ -13,9 +13,7 @@ import rootSaga from './redux/sagas';
 const sagaMiddleware = createSagaMiddleware();
 
 const store = createStore(
-    combineReducers({
         rootReducer,
-    }),
     applyMiddleware(sagaMiddleware, logger)
 );
 

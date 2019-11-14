@@ -58,25 +58,22 @@ class AddRestaurant extends Component {
     render() {
         return (
             <form onSubmit={this.submitNewRestaurant}>
-                <h2>Add Restaurant</h2>
+                {/* <h2>Add Restaurant</h2> */}
                 <label>Restaurant Name</label>
-                <input required={true} title="Type restaurant name here (required)" placeholder="*Enter restaurant name here" type="text" onChange={(event) => { this.handleRestaurantInput(event, 'restaurant') }} />
+                <input required={true} title="Type restaurant name here (required)" placeholder="*Enter restaurant name here" type="text" onChange={(event) => { this.handleRestaurantInput(event, 'restaurant') }} value={this.state.restaurant}/>
                 <br />
                 <label>Image URL</label>
                 {/* Future goal: use third-party API to upload photos directly to site */}
-                <input title="Type image url here" placeholder="Enter image url here" type="text" onChange={(event) => { this.handleRestaurantInput(event, 'image') }} />
+                <input title="Type image url here" placeholder="Enter image url here" type="text" onChange={(event) => { this.handleRestaurantInput(event, 'image') }} value={this.state.image}/>
                 <br />
                 <label>Cuisine Type</label>
-                {/* <select title="Select cuisine type here" onChange={(event) => { this.handleRestaurantInput(event, 'cuisine') }}>
-                    <option value={0}>Select a cuisine</option>
-                </select> */}
-                <CuisineDropdown handleInput={this.handleRestaurantInput} />
+                <CuisineDropdown handleInput={this.handleRestaurantInput} selectedCuisine={this.state.cuisine} />
                 <br />
                 <label>Price Range</label>
-                <PriceDropdown handleInput={this.handleRestaurantInput} />
+                <PriceDropdown handleInput={this.handleRestaurantInput} selectedPrice={this.state.price}/>
                 <br />
                 <label>Delivers?</label>
-                <input title="Check if this restaurant delivers" type="checkbox" onChange={this.toggleDelivery} />
+                <input title="Check if this restaurant delivers" type="checkbox" onChange={this.toggleDelivery} checked={this.state.delivers}/>
                 <br />
                 <button title="Click here to save this restaurant" type="submit">Add New Restaurant</button>
             </form>

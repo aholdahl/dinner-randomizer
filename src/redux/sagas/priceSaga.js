@@ -15,8 +15,22 @@ function* fetchPrices() {
     }
 }
 
+function* addNewPrice(action) {
+    try {
+        yield axios.post('/prices', action.payload);
+        yield put({
+            type: 'FETCH_PRICES'
+        });
+        yield Swal.fire('Price added successfully!');
+    } catch (error) {
+        yield Swal.fire('Error adding price.');
+        yield console.log('Error in priceSaga: ', error);
+    }
+}
+
 function* priceSagaRoot() {
     yield takeEvery('FETCH_PRICES', fetchPrices);
+    yield takeEvery('ADD_NEW_PRICE', addNewPrice);
 }
 
 export default priceSagaRoot;

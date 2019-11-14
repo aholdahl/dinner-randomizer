@@ -1,36 +1,41 @@
 import React, { Component } from 'react';
-// import axios from 'axios';
 import { connect } from 'react-redux';
 import './App.css';
-import AddDish from '../AddDish/AddDish.js';
-import AddRestaurant from '../AddRestaurant/AddRestaurant.js';
+// import AddDish from '../AddDish/AddDish.js';
+// import AddRestaurant from '../AddRestaurant/AddRestaurant.js';
 import Home from '../Home/Home.js';
 import ManageOptions from '../ManageOptions/ManageOptions.js';
-// import SampleComponent from '../SampleComponent/SampleComponent.js';
 
 class App extends Component {
 
-  componentDidMount() {
-    // axios.get('/test')
-    //   .then((response) => {
-    //     console.log(response.data);
-    //   });
-    // this.props.dispatch({
-    //   type: 'DISPATCH_TYPE'
-    // });
-    // this.props.dispatch({
-    //   type: 'SAMPLE_SAGA'
-    // });
-  }
+  // componentDidMount() {
+  //   this.props.dispatch({
+  //     type: 'FETCH_CUISINES'
+  //   });
+  //   this.props.dispatch({
+  //     type: 'FETCH_DIFFICULTY'
+  //   });
+  //   this.props.dispatch({
+  //     type: 'FETCH_PRICES'
+  //   });
+  //   this.props.dispatch({
+  //     type: 'FETCH_DISHES'
+  //   });
+  //   this.props.dispatch({
+  //     type: 'FETCH_RESTAURANTS'
+  //   });
+  // }
 
   render() {
     return (
       <div className="App">
         <h1>In the Mood</h1>
-        {/* <SampleComponent/> */}
         <Home />
+        {/* <hr/>
         <AddDish />
-        <AddRestaurant />
+        <hr />
+        <AddRestaurant /> */}
+        <hr />
         <ManageOptions />
       </div>
     );

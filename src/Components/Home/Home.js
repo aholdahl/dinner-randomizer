@@ -17,18 +17,18 @@ class Home extends Component {
 
     render() {
 
-        const renderResults =
-            <>
-                <h4>Tonight, you will be eating: </h4>
-                <p>Food</p>
-            </>
+        // const renderResults =
+        //     <>
+        //         <h4>Tonight, you will be eating: </h4>
+        //         <p>Food</p>
+        //     </>
 
         return (
             <>
                 <h2>Eating In or Dining Out?</h2>
                 <button onClick={this.getRandomDish}>Eating In</button>
                 <button onClick={this.getRandomRestaurant}>Dining Out</button>
-                {renderResults}
+                {/* {renderResults} */}
             </>
         );
     }

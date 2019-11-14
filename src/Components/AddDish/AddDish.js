@@ -51,22 +51,22 @@ class AddDish extends Component {
     render() {
         return (
             <form onSubmit={this.submitNewDish}>
-                <h2>Add Dish</h2>
+                {/* <h2>Add Dish</h2> */}
                 <label>Dish Name</label>
-                <input required={true} title="Type dish name here (required)" placeholder="*Enter dish name here" type="text" onChange={(event) => { this.handleDishInput(event, 'dish') }} />
+                <input required={true} title="Type dish name here (required)" placeholder="*Enter dish name here" type="text" onChange={(event) => { this.handleDishInput(event, 'dish') }} value={this.state.dish}/>
                 <br />
                 <label>Image URL</label>
                 {/* Future goal: use third-party API to upload photos directly to site */}
-                <input title="Type image url here" placeholder="Enter image url here" type="text" onChange={(event) => { this.handleDishInput(event, 'image') }} />
+                <input title="Type image url here" placeholder="Enter image url here" type="text" onChange={(event) => { this.handleDishInput(event, 'image') }} value={this.state.image}/>
                 <br />
                 <label>Cuisine Type</label>
-                <CuisineDropdown handleInput={this.handleDishInput} />
+                <CuisineDropdown handleInput={this.handleDishInput} selectedCuisine={this.state.cuisine}/>
                 <br />
                 <label>Difficulty Level</label>
-                <DifficultyDropdown handleInput={this.handleDishInput} />
+                <DifficultyDropdown handleInput={this.handleDishInput} selectedDifficulty={this.state.difficulty}/>
                 <br />
                 <label>Estimated Prep Time</label>
-                <input title="Type the estimated prep time here" placeholder="Enter the estimated prep time here" type="text" onChange={(event) => { this.handleDishInput(event, 'prep_time') }} />
+                <input title="Type the estimated prep time here" placeholder="Enter the estimated prep time here" type="text" onChange={(event) => { this.handleDishInput(event, 'prep_time') }} value={this.state.prep_time}/>
                 <br />
                 <button title="Click here to save this dish" type="submit">Add New Dish</button>
             </form>

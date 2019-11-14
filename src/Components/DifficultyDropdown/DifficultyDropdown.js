@@ -3,22 +3,22 @@ import { connect } from 'react-redux';
 
 class DifficultyDropdown extends Component {
 
-    // componentDidMount(){
-    //     this.props.dispatch({
-    //         type: 'FETCH_DIFFICULTY'
-    //     });
-    // }
+    componentDidMount(){
+        this.props.dispatch({
+            type: 'FETCH_DIFFICULTY'
+        });
+    }
 
     render() {
 
-        // const renderDifficultyDropdown = this.props.difficulty.map((level)=>{
-        //     return (<option key={level.id} value={level.id}>{level.difficulty}</option>);
-        // })
+        const renderDifficultyDropdown = this.props.difficulty.map((level)=>{
+            return (<option key={level.id} value={level.id}>{level.difficulty}</option>);
+        })
 
         return (
-            <select title="Select difficulty level here" onChange={(event) => { this.props.handleInput(event, 'difficulty') }}>
+            <select title="Select difficulty level here" onChange={(event) => { this.props.handleInput(event, 'difficulty') }} value={this.props.selectedDifficulty}>
                 <option value={0}>Select a difficulty level</option>
-                {/* renderDifficultyDropdown */}
+                {renderDifficultyDropdown}
             </select>
         );
     }
