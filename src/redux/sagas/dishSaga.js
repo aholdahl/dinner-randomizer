@@ -28,9 +28,9 @@ function* addNewDish(action) {
     }
 }
 
-function* sampleSagaRoot() {
+function* dishSagaRoot() {
     yield takeEvery('FETCH_DISHES', fetchDishes);
     yield takeEvery('ADD_NEW_DISH', addNewDish);
 }
 
-export default sampleSagaRoot;
+export default dishSagaRoot;

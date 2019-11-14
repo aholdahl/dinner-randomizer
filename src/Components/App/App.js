@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import './App.css';
 // import SampleComponent from '../SampleComponent/SampleComponent.js';
 import AddDish from '../AddDish/AddDish.js';
+import AddRestaurant from '../AddRestaurant/AddRestaurant.js';
 
 class App extends Component {
   componentDidMount() {
@@ -25,6 +26,7 @@ class App extends Component {
         <h1>Hello World!</h1>
         {/* <SampleComponent/> */}
         <AddDish />
+        <AddRestaurant/>
       </div>
     )
   }

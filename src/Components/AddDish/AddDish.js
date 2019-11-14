@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import Swal from 'sweetalert2';
 
+import CuisineDropdown from '../CuisineDropdown/CuisineDropdown.js';
+import DifficultyDropdown from '../DifficultyDropdown/DifficultyDropdown.js';
+
 class AddDish extends Component {
 
     state = {
@@ -57,16 +60,10 @@ class AddDish extends Component {
                 <input title="Type image url here" placeholder="Enter image url here" type="text" onChange={(event) => { this.handleDishInput(event, 'image') }}/>
                 <br />
                 <label>Cuisine Type</label>
-                <select title="Select cuisine type here" onChange={(event) => { this.handleDishInput(event, 'cuisine') }}>
-                    <option value={0}>Select a cuisine</option>
-                    {/* renderCuisineDropdown */}
-                </select>
+                <CuisineDropdown handleInput={this.handleDishInput}/>
                 <br />
                 <label>Difficulty Level</label>
-                <select title="Select difficulty level here" onChange={(event) => { this.handleDishInput(event, 'difficulty') }}>
-                    <option value={0}>Select a difficulty level</option>
-                    {/* renderDifficultyDropdown */}
-                </select>
+                <DifficultyDropdown handleInput={this.handleDishInput}/>
                 <br />
                 <label>Estimated Prep Time</label>
                 <input title="Type the estimated prep time here" placeholder="Enter the estimated prep time here" type="text" onChange={(event) => { this.handleDishInput(event, 'prep_time') }}/>
