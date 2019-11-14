@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 // import axios from 'axios';
 import { connect } from 'react-redux';
 import './App.css';
-// import SampleComponent from '../SampleComponent/SampleComponent.js';
-import Home from '../Home/Home.js';
 import AddDish from '../AddDish/AddDish.js';
 import AddRestaurant from '../AddRestaurant/AddRestaurant.js';
+import Home from '../Home/Home.js';
 import ManageOptions from '../ManageOptions/ManageOptions.js';
+// import SampleComponent from '../SampleComponent/SampleComponent.js';
 
 class App extends Component {
 
