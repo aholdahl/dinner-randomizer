@@ -11,9 +11,9 @@ function* fetchDifficulty() {
         });
     } catch (error) {
         yield Swal.fire('Error getting difficulty levels.');
-        yield console.log('Error in difficultySaga: ', error)
-    };
-};
+        yield console.log('Error in difficultySaga: ', error);
+    }
+}
 
 function* difficultySagaRoot() {
     yield takeEvery('FETCH_DIFFICULTY', fetchDifficulty);

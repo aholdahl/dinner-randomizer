@@ -11,9 +11,22 @@ function* fetchRestaurants() {
         });
     } catch (error) {
         yield Swal.fire('Error getting restaurants.');
-        yield console.log('Error in restaurantSaga: ', error)
-    };
-};
+        yield console.log('Error in restaurantSaga: ', error);
+    }
+}
+
+function* fetchRandomRestaurant() {
+    try {
+        let response = yield axios.get('/restaurants/random');
+        yield put({
+            type: 'SET_RANDOM_RESTAURANT',
+            payload: response.data
+        });
+    } catch (error) {
+        yield Swal.fire('Error getting random restaurant.');
+        yield console.log('Error in restaurantSaga: ', error);
+    }
+}
 
 function* addNewRestaurant(action) {
     try {
@@ -23,14 +36,15 @@ function* addNewRestaurant(action) {
         });
         yield Swal.fire('Restaurant added successfully!');
     } catch (error) {
-        yield Swal.fire('There was an error adding the new restaurant.')
-        yield console.log('Error in restaurantSaga: ', error)
+        yield Swal.fire('There was an error adding the new restaurant.');
+        yield console.log('Error in restaurantSaga: ', error);
     }
 }
 
 function* restaurantSagaRoot() {
     yield takeEvery('FETCH_RESTAURANTS', fetchRestaurants);
     yield takeEvery('ADD_NEW_RESTAURANT', addNewRestaurant);
+    yield takeEvery('FETCH_RANDOM_RESTAURANT', fetchRandomRestaurant);
 }
 
 export default restaurantSagaRoot;

@@ -11,9 +11,22 @@ function* fetchDishes() {
         });
     } catch (error) {
         yield Swal.fire('Error getting dishes.');
-        yield console.log('Error in dishSaga: ', error)
-    };
-};
+        yield console.log('Error in dishSaga: ', error);
+    }
+}
+
+function* fetchRandomDish() {
+    try {
+        let response = yield axios.get('/dishes/random');
+        yield put({
+            type: 'SET_RANDOM_DISH',
+            payload: response.data
+        });
+    } catch (error) {
+        yield Swal.fire('Error getting random dish.');
+        yield console.log('Error in dishSaga: ', error);
+    }
+}
 
 function* addNewDish(action) {
     try {
@@ -23,13 +36,14 @@ function* addNewDish(action) {
         });
         yield Swal.fire('Dish added successfully!');
     } catch (error) {
-        yield Swal.fire('There was an error adding the new dish.')
-        yield console.log('Error in dishSaga: ', error)
+        yield Swal.fire('There was an error adding the new dish.');
+        yield console.log('Error in dishSaga: ', error);
     }
 }
 
 function* dishSagaRoot() {
     yield takeEvery('FETCH_DISHES', fetchDishes);
+    yield takeEvery('FETCH_RANDOM_DISH', fetchRandomDish);
     yield takeEvery('ADD_NEW_DISH', addNewDish);
 }
 

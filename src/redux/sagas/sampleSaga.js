@@ -3,9 +3,9 @@ import { takeEvery, /* put */ } from 'redux-saga/effects';
 
 function* sampleSaga() {
     try {
-        yield console.log('Hello from sampleSaga')
+        yield console.log('Hello from sampleSaga');
     } catch (error) {
-        yield console.log('Error in sampleSaga: ', error)
+        yield console.log('Error in sampleSaga: ', error);
     }
 }
 

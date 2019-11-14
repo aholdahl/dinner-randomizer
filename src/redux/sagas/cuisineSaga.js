@@ -11,9 +11,9 @@ function* fetchCuisines() {
         });
     } catch (error) {
         yield Swal.fire('Error getting cuisines.');
-        yield console.log('Error in cuisineSaga: ', error)
-    };
-};
+        yield console.log('Error in cuisineSaga: ', error);
+    }
+}
 
 function* cuisineSagaRoot() {
     yield takeEvery('FETCH_CUISINES', fetchCuisines);

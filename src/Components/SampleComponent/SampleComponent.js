@@ -6,7 +6,7 @@ class SampleComponent extends Component {
             <div>
                 <h2>Hello from SampleComponent!</h2>
             </div>
-        )
+        );
     }
 }
 

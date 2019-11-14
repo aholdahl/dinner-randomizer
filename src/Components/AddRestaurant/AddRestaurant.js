@@ -19,14 +19,14 @@ class AddRestaurant extends Component {
         this.setState({
             ...this.state,
             [property]: event.target.value
-        })
+        });
     }
 
-    toggleDelivery = ()=>{
+    toggleDelivery = () => {
         this.setState({
             ...this.state,
             delivers: !this.state.delivers
-        })
+        });
     }
 
     submitNewRestaurant = (event) => {
@@ -42,7 +42,7 @@ class AddRestaurant extends Component {
                 this.props.dispatch({
                     type: 'ADD_NEW_RESTAURANT',
                     payload: { ...this.state }
-                })
+                });
                 this.setState({
                     ...this.state,
                     restaurant: '',
@@ -50,9 +50,9 @@ class AddRestaurant extends Component {
                     delivers: '',
                     price: 0,
                     cuisine: 0
-                })
+                });
             }
-        })
+        });
     }
 
     render() {
@@ -70,17 +70,17 @@ class AddRestaurant extends Component {
                 {/* <select title="Select cuisine type here" onChange={(event) => { this.handleRestaurantInput(event, 'cuisine') }}>
                     <option value={0}>Select a cuisine</option>
                 </select> */}
-                <CuisineDropdown handleInput={this.handleRestaurantInput}/>
+                <CuisineDropdown handleInput={this.handleRestaurantInput} />
                 <br />
                 <label>Price Range</label>
-                <PriceDropdown handleInput={this.handleRestaurantInput}/>
+                <PriceDropdown handleInput={this.handleRestaurantInput} />
                 <br />
                 <label>Delivers?</label>
                 <input title="Check if this restaurant delivers" type="checkbox" onChange={this.toggleDelivery} />
                 <br />
                 <button title="Click here to save this restaurant" type="submit">Add New Restaurant</button>
             </form>
-        )
+        );
     }
 }
 

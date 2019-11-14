@@ -11,12 +11,12 @@ function* fetchPrices() {
         });
     } catch (error) {
         yield Swal.fire('Error getting prices.');
-        yield console.log('Error in priceSaga: ', error)
-    };
-};
+        yield console.log('Error in priceSaga: ', error);
+    }
+}
 
-function* cuisineSagaRoot() {
+function* priceSagaRoot() {
     yield takeEvery('FETCH_PRICES', fetchPrices);
 }
 
-export default cuisineSagaRoot;
+export default priceSagaRoot;

@@ -14,7 +14,7 @@ function* rootSaga() {
         cuisineSaga(),
         difficultySaga(),
         priceSaga(),
-    ])
+    ]);
 }
 
 export default rootSaga;
