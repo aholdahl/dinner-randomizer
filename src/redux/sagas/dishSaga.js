@@ -17,7 +17,7 @@ function* fetchDishes() {
 
 function* addNewDish(action) {
     try {
-        yield axios.post('/dish', action.payload);
+        yield axios.post('/dishes', action.payload);
         yield put({
             type: 'FETCH_DISHES'
         });

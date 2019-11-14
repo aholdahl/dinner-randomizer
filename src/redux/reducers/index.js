@@ -4,6 +4,7 @@ import dishReducer from './dishReducer.js';
 import restaurantReducer from './restaurantReducer.js';
 import cuisineReducer from './cuisineReducer.js';
 import difficultyReducer from './difficultyReducer.js';
+import priceReducer from './priceReducer.js';
 
 const rootReducer = combineReducers({
     // sampleReducer,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
     restaurantReducer,
     cuisineReducer,
     difficultyReducer,
+    priceReducer,
 });
 
 export default rootReducer;

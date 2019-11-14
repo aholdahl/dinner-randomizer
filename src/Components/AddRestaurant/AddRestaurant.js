@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Swal from 'sweetalert2';
 
 import CuisineDropdown from '../CuisineDropdown/CuisineDropdown.js';
+import PriceDropdown from '../PriceDropdown/PriceDropdown.js';
 
 class AddRestaurant extends Component {
 
@@ -72,10 +73,7 @@ class AddRestaurant extends Component {
                 <CuisineDropdown handleInput={this.handleRestaurantInput}/>
                 <br />
                 <label>Price Range</label>
-                <select title="Select price range here" onChange={(event) => { this.handleRestaurantInput(event, 'price') }}>
-                    <option value={0}>Select a price range</option>
-                    {/* renderDifficultyDropdown */}
-                </select>
+                <PriceDropdown handleInput={this.handleRestaurantInput}/>
                 <br />
                 <label>Delivers?</label>
                 <input title="Check if this restaurant delivers" type="checkbox" onChange={this.toggleDelivery} />

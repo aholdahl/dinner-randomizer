@@ -4,6 +4,7 @@ import dishSaga from './dishSaga.js';
 import restaurantSaga from './restaurantSaga.js';
 import cuisineSaga from './cuisineSaga.js';
 import difficultySaga from './difficultySaga.js';
+import priceSaga from './priceSaga.js';
 
 function* rootSaga() {
     yield all([
@@ -12,6 +13,7 @@ function* rootSaga() {
         restaurantSaga(),
         cuisineSaga(),
         difficultySaga(),
+        priceSaga(),
     ])
 }
 
