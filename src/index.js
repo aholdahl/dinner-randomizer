@@ -8,7 +8,6 @@ import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 import rootReducer from './redux/reducers';
 import createSagaMiddleware from 'redux-saga';
-import { takeEvery } from 'redux-saga/effects';
 import rootSaga from './redux/sagas';
 
 const sagaMiddleware = createSagaMiddleware();
