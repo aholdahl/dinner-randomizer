@@ -1,5 +1,5 @@
 import { all } from 'redux-saga/effects';
-import cuisineSaga from './cuisineSaga.js';
+import categorySaga from './categorySaga.js';
 import difficultySaga from './difficultySaga.js';
 import dishSaga from './dishSaga.js';
 import priceSaga from './priceSaga.js';
@@ -8,7 +8,7 @@ import restaurantSaga from './restaurantSaga.js';
 
 function* rootSaga() {
     yield all([
-        cuisineSaga(),
+        categorySaga(),
         difficultySaga(),
         dishSaga(),
         priceSaga(),

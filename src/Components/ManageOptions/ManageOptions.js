@@ -6,14 +6,14 @@ import AddRestaurant from '../AddRestaurant/AddRestaurant.js';
 class ManageOptions extends Component {
 
     state = {
-        cuisine: '',
+        category: '',
         difficulty: '',
         price: ''
     }
 
     componentDidMount(){
         this.props.dispatch({
-            type: 'FETCH_CUISINES'
+            type: 'FETCH_CATEGORIES'
         });
         this.props.dispatch({
             type: 'FETCH_DIFFICULTY'
@@ -37,10 +37,10 @@ class ManageOptions extends Component {
     }
 
     handleSubmit = (property)=>{
-        if(property === 'cuisine'){
+        if(property === 'category'){
             this.props.dispatch({
-                type: 'ADD_NEW_CUISINE',
-                payload: {cuisine: this.state.cuisine}
+                type: 'ADD_NEW_CATEGORY',
+                payload: { category: this.state.category}
             })
         } else if (property === 'difficulty'){
             this.props.dispatch({
@@ -63,12 +63,12 @@ class ManageOptions extends Component {
         return (
             <>
                 <h2>Manage Options</h2>
-                <h3>Cuisines</h3>
-                <input title="Type new cuisine option here" placeholder="Enter new cuisine label" type="text" onChange={(event)=>{this.handleChange(event, 'cuisine')}} value={this.state.cuisine}/>
-                <button onClick={()=>{this.handleSubmit('cuisine')}}>Add New Cuisine</button>
-                {this.props.store.cuisineReducer.map((cuisine)=>{
+                <h3>Categories</h3>
+                <input title="Type new category option here" placeholder="Enter new category label" type="text" onChange={(event) => { this.handleChange(event, 'category') }} value={this.state.category}/>
+                <button onClick={() => { this.handleSubmit('category') }}>Add New Category</button>
+                {this.props.store.categoryReducer.map((category)=>{
                     return (
-                        <p key={cuisine.id}>{cuisine.cuisine}</p>
+                        <p key={category.id}>{category.category}</p>
                         )
                 })}
                 <hr/>
@@ -99,7 +99,7 @@ class ManageOptions extends Component {
                             <th>Image</th>
                             <th>Prep Time</th>
                             <th>Difficulty</th>
-                            <th>Cuisine</th>
+                            <th>Category</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -110,7 +110,7 @@ class ManageOptions extends Component {
                                     <td>{dish.image}</td>
                                     <td>{dish.prep_time}</td>
                                     <td>{dish.difficulty}</td>
-                                    <td>{dish.cuisine}</td>
+                                    <td>{dish.category}</td>
                                 </tr>
                             )
                         })}
@@ -126,7 +126,7 @@ class ManageOptions extends Component {
                             <th>Image</th>
                             <th>Delivers?</th>
                             <th>Price</th>
-                            <th>Cuisine</th>
+                            <th>Category</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -137,7 +137,7 @@ class ManageOptions extends Component {
                                     <td>{restaurant.image}</td>
                                     <td>{restaurant.delivers}</td>
                                     <td>{restaurant.price}</td>
-                                    <td>{restaurant.cuisine}</td>
+                                    <td>{restaurant.category}</td>
                                 </tr>
                             )
                         })}

@@ -5,22 +5,30 @@ const pool = require('../modules/pool.js');
 // let sampleData = [
 //     {
 //         id: 1,
-//         price: '$'
+//         category: 'american'
 //     },
 //     {
 //         id: 2,
-//         price: '$$'
+//         category: 'french'
 //     },
 //     {
 //         id: 3,
-//         price: '$$$'
+//         category: 'mexican'
+//     },
+//     {
+//         id: 4,
+//         category: 'italian'
+//     },
+//     {
+//         id: 5,
+//         category: 'asian'
 //     },
 // ];
 
 router.get('/', (req, res) => {
-    console.log('In priceRouter GET request');
+    console.log('In categoryRouter GET request');
     // res.send(sampleData);
-    let queryText = `SELECT * FROM "price";`
+    let queryText = `SELECT * FROM "category";`
     pool.query(queryText)
         .then((result) => {
             res.send(result.rows);
@@ -31,11 +39,11 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    console.log('In priceRouter POST request: ', req.body);
+    console.log('In categoryRouter POST request: ', req.body);
     // sampleData.push(req.body);
     // res.sendStatus(200);
-    let queryText = `INSERT INTO "price" ("price") VALUES ($1);`
-    pool.query(queryText, [req.body.price])
+    let queryText = `INSERT INTO "category" ("category") VALUES ($1);`
+    pool.query(queryText, [req.body.category])
     .then((result)=>{
         res.sendStatus(200);
     }).catch((error)=>{

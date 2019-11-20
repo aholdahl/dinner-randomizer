@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Swal from 'sweetalert2';
 
-import CuisineDropdown from '../CuisineDropdown/CuisineDropdown.js';
+import CategoryDropdown from '../CategoryDropdown/CategoryDropdown.js';
 import DifficultyDropdown from '../DifficultyDropdown/DifficultyDropdown.js';
 
 class AddDish extends Component {
@@ -12,7 +12,7 @@ class AddDish extends Component {
         image: '',
         prep_time: '',
         difficulty: 0,
-        cuisine: 0
+        category: 0
     }
 
     handleDishInput = (event, property) => {
@@ -42,7 +42,7 @@ class AddDish extends Component {
                     image: '',
                     prep_time: '',
                     difficulty: 0,
-                    cuisine: 0
+                    category: 0
                 });
             }
         });
@@ -59,8 +59,8 @@ class AddDish extends Component {
                 {/* Future goal: use third-party API to upload photos directly to site */}
                 <input title="Type image url here" placeholder="Enter image url here" type="text" onChange={(event) => { this.handleDishInput(event, 'image') }} value={this.state.image}/>
                 <br />
-                <label>Cuisine Type</label>
-                <CuisineDropdown handleInput={this.handleDishInput} selectedCuisine={this.state.cuisine}/>
+                <label>Category</label>
+                <CategoryDropdown handleInput={this.handleDishInput} selectedCategory={this.state.category}/>
                 <br />
                 <label>Difficulty Level</label>
                 <DifficultyDropdown handleInput={this.handleDishInput} selectedDifficulty={this.state.difficulty}/>

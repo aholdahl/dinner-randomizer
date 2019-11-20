@@ -1,10 +1,10 @@
-const cuisineReducer = (state = [], action) => {
+const categoryReducer = (state = [], action) => {
     switch (action.type) {
-        case 'SET_CUISINES':
+        case 'SET_CATEGORIES':
             return action.payload;
         default:
             return state;
     }
 }
 
-export default cuisineReducer;
+export default categoryReducer;

@@ -10,7 +10,7 @@ class App extends Component {
 
   // componentDidMount() {
   //   this.props.dispatch({
-  //     type: 'FETCH_CUISINES'
+  //     type: 'FETCH_CATEGORIES'
   //   });
   //   this.props.dispatch({
   //     type: 'FETCH_DIFFICULTY'

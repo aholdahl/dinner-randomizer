@@ -8,8 +8,8 @@ app.use(bodyParser.json());
 app.use(express.static('build'));
 
 /** ---------- EXPRESS ROUTES ---------- **/
-const cuisineRouter = require('./routes/cuisine.router.js');
-app.use('/cuisines', cuisineRouter);
+const categoryRouter = require('./routes/category.router.js');
+app.use('/categories', categoryRouter);
 const difficultyRouter = require('./routes/difficulty.router.js');
 app.use('/difficulty', difficultyRouter);
 const dishRouter = require('./routes/dish.router.js');

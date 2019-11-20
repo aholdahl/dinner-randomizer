@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Swal from 'sweetalert2';
 
-import CuisineDropdown from '../CuisineDropdown/CuisineDropdown.js';
+import CategoryDropdown from '../CategoryDropdown/CategoryDropdown.js';
 import PriceDropdown from '../PriceDropdown/PriceDropdown.js';
 
 class AddRestaurant extends Component {
@@ -12,7 +12,7 @@ class AddRestaurant extends Component {
         image: '',
         delivers: false,
         price: 0,
-        cuisine: 0
+        category: 0
     }
 
     handleRestaurantInput = (event, property) => {
@@ -49,7 +49,7 @@ class AddRestaurant extends Component {
                     image: '',
                     delivers: '',
                     price: 0,
-                    cuisine: 0
+                    category: 0
                 });
             }
         });
@@ -66,8 +66,8 @@ class AddRestaurant extends Component {
                 {/* Future goal: use third-party API to upload photos directly to site */}
                 <input title="Type image url here" placeholder="Enter image url here" type="text" onChange={(event) => { this.handleRestaurantInput(event, 'image') }} value={this.state.image}/>
                 <br />
-                <label>Cuisine Type</label>
-                <CuisineDropdown handleInput={this.handleRestaurantInput} selectedCuisine={this.state.cuisine} />
+                <label>Category</label>
+                <CategoryDropdown handleInput={this.handleRestaurantInput} selectedCategory={this.state.category} />
                 <br />
                 <label>Price Range</label>
                 <PriceDropdown handleInput={this.handleRestaurantInput} selectedPrice={this.state.price}/>
