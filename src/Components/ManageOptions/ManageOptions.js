@@ -96,10 +96,12 @@ class ManageOptions extends Component {
                     <thead>
                         <tr>
                             <th>Dish</th>
+                            <th>Recipe URL</th>
                             <th>Image</th>
                             <th>Prep Time</th>
+                            <th>Servings</th>
                             <th>Difficulty</th>
-                            <th>Category</th>
+                            {/* <th>Category</th> */}
                         </tr>
                     </thead>
                     <tbody>
@@ -107,10 +109,12 @@ class ManageOptions extends Component {
                             return (
                                 <tr key={dish.id}>
                                     <td>{dish.dish}</td>
+                                    <td>{dish.recipe_url}</td>
                                     <td>{dish.image}</td>
                                     <td>{dish.prep_time}</td>
+                                    <td>{dish.servings}</td>
                                     <td>{dish.difficulty}</td>
-                                    <td>{dish.category}</td>
+                                    {/* <td>{dish.category}</td> */}
                                 </tr>
                             )
                         })}
@@ -123,10 +127,14 @@ class ManageOptions extends Component {
                     <thead>
                         <tr>
                             <th>Restaurant</th>
+                            <th>Menu URL</th>
                             <th>Image</th>
+                            <th>Address</th>
+                            <th>Phone Number</th>
                             <th>Delivers?</th>
+                            <th>Reservation?</th>
                             <th>Price</th>
-                            <th>Category</th>
+                            {/* <th>Category</th> */}
                         </tr>
                     </thead>
                     <tbody>
@@ -134,10 +142,14 @@ class ManageOptions extends Component {
                             return (
                                 <tr key={restaurant.id}>
                                     <td>{restaurant.restaurant}</td>
+                                    <td>{restaurant.menu_url}</td>
                                     <td>{restaurant.image}</td>
+                                    <td>{restaurant.address}</td>
+                                    <td>{restaurant.phone_number}</td>
                                     <td>{restaurant.delivers}</td>
+                                    <td>{restaurant.reservation}</td>
                                     <td>{restaurant.price}</td>
-                                    <td>{restaurant.category}</td>
+                                    {/* <td>{restaurant.category}</td> */}
                                 </tr>
                             )
                         })}

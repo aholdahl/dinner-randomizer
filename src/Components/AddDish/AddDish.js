@@ -2,17 +2,18 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Swal from 'sweetalert2';
 
-import CategoryDropdown from '../CategoryDropdown/CategoryDropdown.js';
+// import CategoryDropdown from '../CategoryDropdown/CategoryDropdown.js';
 import DifficultyDropdown from '../DifficultyDropdown/DifficultyDropdown.js';
 
 class AddDish extends Component {
 
     state = {
         dish: '',
+        recipe_url: '',
         image: '',
         prep_time: '',
-        difficulty: 0,
-        category: 0
+        servings: 0,
+        difficulty_id: 0
     }
 
     handleDishInput = (event, property) => {
@@ -39,10 +40,11 @@ class AddDish extends Component {
                 this.setState({
                     ...this.state,
                     dish: '',
+                    recipe_url: '',
                     image: '',
                     prep_time: '',
-                    difficulty: 0,
-                    category: 0
+                    servings: 0,
+                    difficulty_id: 0
                 });
             }
         });
@@ -55,19 +57,24 @@ class AddDish extends Component {
                 <label>Dish Name</label>
                 <input required={true} title="Type dish name here (required)" placeholder="*Enter dish name here" type="text" onChange={(event) => { this.handleDishInput(event, 'dish') }} value={this.state.dish}/>
                 <br />
+                <label>Recipe URL</label>
+                <input title="Type recipe URL here" placeholder="Enter recipe url here" type="text" onChange={(event)=>{this.handleDishInput(event, 'recipe_url')}} value={this.state.recipe_url}/>
                 <label>Image URL</label>
                 {/* Future goal: use third-party API to upload photos directly to site */}
                 <input title="Type image url here" placeholder="Enter image url here" type="text" onChange={(event) => { this.handleDishInput(event, 'image') }} value={this.state.image}/>
                 <br />
-                <label>Category</label>
-                <CategoryDropdown handleInput={this.handleDishInput} selectedCategory={this.state.category}/>
-                <br />
-                <label>Difficulty Level</label>
-                <DifficultyDropdown handleInput={this.handleDishInput} selectedDifficulty={this.state.difficulty}/>
-                <br />
                 <label>Estimated Prep Time</label>
-                <input title="Type the estimated prep time here" placeholder="Enter the estimated prep time here" type="text" onChange={(event) => { this.handleDishInput(event, 'prep_time') }} value={this.state.prep_time}/>
+                <input title="Type the estimated prep time here" placeholder="Enter the estimated prep time here" type="text" onChange={(event) => { this.handleDishInput(event, 'prep_time') }} value={this.state.prep_time} />
                 <br />
+                <label>Servings</label>
+                <input title="Type the number of servings here" placeholder="Enter the number of servings here" type="number" onChange={(event) => { this.handleDishInput(event, 'servings') }} value={this.state.servings} />
+                <br/>
+                <label>Difficulty Level</label>
+                <DifficultyDropdown handleInput={this.handleDishInput} selectedDifficulty={this.state.difficulty_id}/>
+                <br />
+                {/* <label>Category</label>
+                <CategoryDropdown handleInput={this.handleDishInput} selectedCategory={this.state.category}/>
+                <br /> */}
                 <button title="Click here to save this dish" type="submit">Add New Dish</button>
             </form>
         );

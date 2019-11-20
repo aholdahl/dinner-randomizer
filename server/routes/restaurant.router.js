@@ -6,9 +6,8 @@ randomNumber = (min, max) => {
     return Math.floor(Math.random() * (1 + max - min) + min);
 }
 
-router.get('/', (req, res) => {
-    console.log('In restaurantRouter GET request');
-    res.send(sampleData);
+router.get('/all', (req, res) => {
+    console.log('In restaurantRouter GET-all request');
     let queryText = `SELECT * FROM "restaurant";`
     pool.query(queryText)
         .then((result) => {

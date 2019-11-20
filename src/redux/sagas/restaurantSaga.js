@@ -4,7 +4,7 @@ import Swal from 'sweetalert2';
 
 function* fetchRestaurants() {
     try {
-        let response = yield axios.get('/restaurants');
+        let response = yield axios.get('/restaurants/all');
         yield put({
             type: 'SET_RESTAURANTS',
             payload: response.data
