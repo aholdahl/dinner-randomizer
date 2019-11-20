@@ -2,24 +2,8 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool.js');
 
-// let sampleData = [
-//     {
-//         id: 1,
-//         difficulty: 'easy'
-//     },
-//     {
-//         id: 2,
-//         difficulty: 'medium'
-//     },
-//     {
-//         id: 3,
-//         difficulty: 'hard'
-//     },
-// ];
-
 router.get('/', (req, res) => {
     console.log('In difficultyRouter GET request');
-    // res.send(sampleData);
     let queryText = `SELECT * FROM "difficulty";`
     pool.query(queryText)
         .then((result) => {
@@ -32,16 +16,38 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
     console.log('In difficultyRouter POST request: ', req.body);
-    // sampleData.push(req.body);
-    // res.sendStatus(200);
     let queryText = `INSERT INTO "difficulty" ("difficulty") VALUES ($1);`
     pool.query(queryText, [req.body.difficulty])
-    .then((result)=>{
-        res.sendStatus(200);
-    }).catch((error)=>{
-        console.log(error);
-        res.sendStatus(500);
-    });
+        .then((result) => {
+            res.sendStatus(200);
+        }).catch((error) => {
+            console.log(error);
+            res.sendStatus(500);
+        });
+});
+
+router.put('/', (req, res) => {
+    console.log('In difficultyRouter PUT request: ', req.body);
+    let queryText = `UPDATE "difficulty" SET "difficulty" = $1 WHERE "id" = $2;`
+    pool.query(queryText, [req.body.difficulty, req.body.id])
+        .then((result) => {
+            res.sendStatus(200);
+        }).catch((error) => {
+            console.log(error);
+            res.sendStatus(500);
+        });
+});
+
+router.delete('/:id', (req, res) => {
+    console.log('In difficultyRouter DELETE request: ', req.params);
+    let queryText = `DELETE FROM "difficulty" WHERE "id" = $1;`
+    pool.query(queryText, [req.params.id])
+        .then((result) => {
+            res.sendStatus(200);
+        }).catch((error) => {
+            console.log(error);
+            res.sendStatus(500);
+        });
 });
 
 module.exports = router;

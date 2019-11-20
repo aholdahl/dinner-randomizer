@@ -2,93 +2,70 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool.js');
 
-let sampleData = [
-    {
-        id: 1,
-        restaurant: 'Benihana',
-        image: '',
-        delivers: false,
-        price_id: 2,
-        price: '$$',
-        cuisine_id: 5,
-        cuisine: 'asian'
-    },
-    {
-        id: 2,
-        restaurant: 'Bryant Lake Bowl',
-        image: '',
-        delivers: false,
-        price_id: 1,
-        price: '$',
-        cuisine_id: 1,
-        cuisine: 'american'
-    },
-    {
-        id: 3,
-        restaurant: 'Rojo',
-        image: '',
-        delivers: false,
-        price_id: 2,
-        price: '$$',
-        cuisine_id: 3,
-        cuisine: 'mexican'
-    },
-    {
-        id: 4,
-        restaurant: 'Meritage',
-        image: '',
-        delivers: false,
-        price_id: 3,
-        price: '$$$',
-        cuisine_id: 2,
-        cuisine: 'french'
-    }
-];
-
-randomNumber = (min, max)=> {
+randomNumber = (min, max) => {
     return Math.floor(Math.random() * (1 + max - min) + min);
 }
 
 router.get('/', (req, res) => {
     console.log('In restaurantRouter GET request');
     res.send(sampleData);
-    // let queryText = `SELECT * FROM "restaurant";`
-    // pool.query(queryText)
-    //     .then((result) => {
-    //         res.send(result.rows);
-    //     }).catch((error) => {
-    //         console.log(error);
-    //         res.sendStatus(500);
-    //     });
+    let queryText = `SELECT * FROM "restaurant";`
+    pool.query(queryText)
+        .then((result) => {
+            res.send(result.rows);
+        }).catch((error) => {
+            console.log(error);
+            res.sendStatus(500);
+        });
 });
 
 router.get('/random', (req, res) => {
-    console.log('In restaurantRouter GET-random request');
-    let randomizeMe = randomNumber(0, (sampleData.length -1) );
-    console.log(sampleData[randomizeMe])
-    res.send(sampleData[randomizeMe]);
-    // let queryText = `SELECT * FROM "restaurant" WHERE "id" = $1;`
-    // pool.query(queryText, [randomizeMe])
-    //     .then((result) => {
-    //         res.send(result.rows);
-    //     }).catch((error) => {
-    //         console.log(error);
-    //         res.sendStatus(500);
-    //     });
+    let randomizeMe = randomNumber(0, (sampleData.length - 1));
+    console.log('In restaurantRouter GET-random request: ', randomizeMe);
+    let queryText = `SELECT * FROM "restaurant" WHERE "id" = $1;`
+    pool.query(queryText, [randomizeMe])
+        .then((result) => {
+            res.send(result.rows);
+        }).catch((error) => {
+            console.log(error);
+            res.sendStatus(500);
+        });
 });
 
 router.post('/', (req, res) => {
     console.log('In restaurantRouter POST request: ', req.body);
-    sampleData.push(req.body);
-    res.sendStatus(200);
-    // let queryText = `INSERT INTO "restaurant" ("restaurant", "image", "delivers", "price", "cuisine") VALUES ($1, $2, $3, $4, $5);`
-    // pool.query(queryText, [req.body.restaurant, req.body.image, req.body.delivers, req.body.price, req.body.cuisine])
-    // .then((result)=>{
-    //     res.sendStatus(200);
-    // }).catch((error)=>{
-    //     console.log(error);
-    //     res.sendStatus(500);
-    // });
+    let queryText = `INSERT INTO "restaurant" ("restaurant", "menu_url", "image", "address", "phone_number", "delivers", "reservation", "price_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8);`
+    pool.query(queryText, [req.body.restaurant, req.body.menu_url, req.body.image, req.body.address, req.body.phone_number, req.body.delivers, req.body.reservation, req.body.price_id])
+        .then((result) => {
+            res.sendStatus(200);
+        }).catch((error) => {
+            console.log(error);
+            res.sendStatus(500);
+        });
+});
+
+router.put('/', (req, res) => {
+    console.log('In restaurantRouter PUT request: ', req.body);
+    let queryText = `UPDATE "restaurant" SET "restaurant" = $1, "menu_url" = $2, "image" = $3, "address" = $4, "phone_number" = $5, "delivers" = $6, "reservation" = $7, "price_id" = $8 WHERE "id" = $9;`
+    pool.query(queryText, [req.body.restaurant, req.body.menu_url, req.body.image, req.body.address, req.body.phone_number, req.body.delivers, req.body.reservation, req.body.price_id, req.body.id])
+        .then((result) => {
+            res.sendStatus(200);
+        }).catch((error) => {
+            console.log(error);
+            res.sendStatus(500);
+        });
+});
+
+router.delete('/:id', (req, res) => {
+    console.log('In restaurantRouter DELETE request: ', req.params);
+    let queryText = `DELETE FROM "restaurant" WHERE "id" = $1;`
+    pool.query(queryText, [req.params.id])
+        .then((result) => {
+            res.sendStatus(200);
+        }).catch((error) => {
+            console.log(error);
+            res.sendStatus(500);
+        });
 });
 
 module.exports = router;

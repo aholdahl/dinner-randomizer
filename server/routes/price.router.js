@@ -2,24 +2,8 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool.js');
 
-// let sampleData = [
-//     {
-//         id: 1,
-//         price: '$'
-//     },
-//     {
-//         id: 2,
-//         price: '$$'
-//     },
-//     {
-//         id: 3,
-//         price: '$$$'
-//     },
-// ];
-
 router.get('/', (req, res) => {
     console.log('In priceRouter GET request');
-    // res.send(sampleData);
     let queryText = `SELECT * FROM "price";`
     pool.query(queryText)
         .then((result) => {
@@ -32,16 +16,38 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
     console.log('In priceRouter POST request: ', req.body);
-    // sampleData.push(req.body);
-    // res.sendStatus(200);
     let queryText = `INSERT INTO "price" ("price") VALUES ($1);`
     pool.query(queryText, [req.body.price])
-    .then((result)=>{
-        res.sendStatus(200);
-    }).catch((error)=>{
-        console.log(error);
-        res.sendStatus(500);
-    });
+        .then((result) => {
+            res.sendStatus(200);
+        }).catch((error) => {
+            console.log(error);
+            res.sendStatus(500);
+        });
+});
+
+router.put('/', (req, res) => {
+    console.log('In priceRouter PUT request: ', req.body);
+    let queryText = `UPDATE "price" SET "price" = $1 WHERE "id" = $2;`
+    pool.query(queryText, [req.body.price, req.body.id])
+        .then((result) => {
+            res.sendStatus(200);
+        }).catch((error) => {
+            console.log(error);
+            res.sendStatus(500);
+        });
+});
+
+router.delete('/:id', (req, res) => {
+    console.log('In priceRouter DELETE request: ', req.params);
+    let queryText = `DELETE FROM "price" WHERE "id" = $1;`
+    pool.query(queryText, [req.params.id])
+        .then((result) => {
+            res.sendStatus(200);
+        }).catch((error) => {
+            console.log(error);
+            res.sendStatus(500);
+        });
 });
 
 module.exports = router;
