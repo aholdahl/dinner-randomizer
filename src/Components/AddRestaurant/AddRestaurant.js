@@ -138,4 +138,5 @@ const mapStateToProps = (store) => {
         categories: store.categoryReducer
     }
 }
+
 export default connect(mapStateToProps)(AddRestaurant);

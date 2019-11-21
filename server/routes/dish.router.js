@@ -31,7 +31,7 @@ router.get('/random', (req, res) => {
         });
 });
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
     console.log('In dishRouter POST request: ', req.body);
     let queryText = `INSERT INTO "dish" ("dish", "recipe_url", "image", "prep_time", "servings", "difficulty_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING id";`
     const connection = await pool.connect();
@@ -41,6 +41,9 @@ router.post('/', (req, res) => {
         let dish_id = result.rows[0].id;
         for (let category of req.body.categories) {
             await connection.query(`INSERT INTO "dish_category" ("dish_id", "category_id") VALUES ($1, $2);`, [dish_id, category.id])
+        };
+        for (let ingredient of req.body.ingredients) {
+            await connection.query(`INSERT INTO "dish_ingredient" ("dish_id", "ingredient_id") VALUES ($1, $2);`, [dish_id, ingredient.id])
         };
         await connection.query('COMMIT;');
         res.sendStatus(200);

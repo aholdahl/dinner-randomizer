@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Swal from 'sweetalert2';
 
-// import CategoryDropdown from '../CategoryDropdown/CategoryDropdown.js';
+import CategoryDropdown from '../CategoryDropdown/CategoryDropdown.js';
 import DifficultyDropdown from '../DifficultyDropdown/DifficultyDropdown.js';
+import IngredientDropdown from '../IngredientDropdown/IngredientDropdown.js';
 
 class AddDish extends Component {
 
@@ -13,13 +14,40 @@ class AddDish extends Component {
         image: '',
         prep_time: '',
         servings: 0,
-        difficulty_id: 0
+        difficulty_id: 0,
+        category_id: 0,
+        categories: [],
+        ingredient_id: 0,
+        ingredients: []
+    }
+
+    componentDidMount() {
+        this.props.dispatch({
+            type: 'FETCH_CATEGORIES'
+        });
+        this.props.dispatch({
+            type: 'FETCH_INGREDIENTS'
+        });
     }
 
     handleDishInput = (event, property) => {
         this.setState({
             ...this.state,
             [property]: event.target.value
+        });
+    }
+
+    storeCategory = () => {
+        this.setState({
+            ...this.state,
+            categories: [...this.state.categories, Number(this.state.category_id)],
+        });
+    }
+
+    storeIngredient = () => {
+        this.setState({
+            ...this.state,
+            ingredients: [...this.state.ingredients, Number(this.state.ingredient_id)],
         });
     }
 
@@ -44,13 +72,32 @@ class AddDish extends Component {
                     image: '',
                     prep_time: '',
                     servings: 0,
-                    difficulty_id: 0
+                    difficulty_id: 0,
+                    category_id: 0,
+                    categories: [],
+                    ingredient_id: 0,
+                    ingredients: []
                 });
             }
         });
     }
 
     render() {
+
+        const renderSelectedCategories = this.props.categories.map((category) => {
+            if (this.state.categories.indexOf(category.id) >= 0) {
+                return (<p key={category.id}>{category.category}</p>)
+            }
+            return null;
+        })
+
+        const renderSelectedIngredients = this.props.ingredients.map((ingredient) => {
+            if (this.state.ingredients.indexOf(ingredient.id) >= 0) {
+                return (<p key={ingredient.id}>{ingredient.ingredient}</p>)
+            }
+            return null;
+        })
+
         return (
             <form onSubmit={this.submitNewDish}>
                 {/* <h2>Add Dish</h2> */}
@@ -73,13 +120,27 @@ class AddDish extends Component {
                 <label>Difficulty Level</label>
                 <DifficultyDropdown handleInput={this.handleDishInput} selectedDifficulty={this.state.difficulty_id}/>
                 <br />
-                {/* <label>Category</label>
-                <CategoryDropdown handleInput={this.handleDishInput} selectedCategory={this.state.category}/>
-                <br /> */}
+                <label>Categories</label>
+                <CategoryDropdown handleInput={this.handleDishInput} selectedCategory={this.state.category} />
+                <button title="Click here to add tag to new dish" onClick={this.storeCategory}>Add Category</button>
+                {renderSelectedCategories}
+                <br />
+                <label>Ingredients</label>
+                <IngredientDropdown handleInput={this.handleDishInput} selectedIngredient={this.state.ingredient} />
+                <button title="Click here to add ingredient to new dish" onClick={this.storeIngredient}>Add Ingredient</button>
+                {renderSelectedIngredients}
+                <br />
                 <button title="Click here to save this dish" type="submit">Add New Dish</button>
             </form>
         );
     }
 }
 
-export default connect()(AddDish);
+const mapStateToProps = (store) => {
+    return {
+        categories: store.categoryReducer,
+        ingredients: store.ingredientReducer
+    }
+}
+
+export default connect(mapStateToProps)(AddDish);
