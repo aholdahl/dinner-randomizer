@@ -31,7 +31,7 @@ class ManageDishes extends Component {
                     <tbody>
                         {this.props.dishes.map((dish) => {
                             return (
-                                <tr key={dish.id}>
+                                <tr key={`dish ${dish.id}`}>
                                     <td>{dish.dish}</td>
                                     <td>{dish.recipe_url}</td>
                                     <td>{dish.image}</td>
@@ -39,10 +39,10 @@ class ManageDishes extends Component {
                                     <td>{dish.servings}</td>
                                     <td>{dish.difficulty}</td>
                                     <td>{dish.categories[0] !== null && dish.categories.map((category) => {
-                                        return <p key={category.id}>{category.category}</p>
+                                        return <p key={`category ${category.id}`}>{category.category}</p>
                                     })}</td>
                                     <td>{dish.ingredients[0] !== null && dish.ingredients.map((ingredient) => {
-                                        return <p key={ingredient.id}>{ingredient.ingredient}</p>
+                                        return <p key={`ingredient ${ingredient.id}`}>{ingredient.ingredient}</p>
                                     })}</td>
                                 </tr>
                             )

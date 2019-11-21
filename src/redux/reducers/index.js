@@ -5,6 +5,8 @@ import dishReducer from './dishReducer.js';
 import ingredientReducer from './ingredientReducer.js';
 import priceReducer from './priceReducer.js';
 import restaurantReducer from './restaurantReducer.js';
+import randomDishReducer from './randomDishReducer.js';
+import randomRestaurantReducer from './randomRestaurantReducer.js';
 // import sampleReducer from './sampleReducer.js';
 
 const rootReducer = combineReducers({
@@ -14,6 +16,8 @@ const rootReducer = combineReducers({
     ingredientReducer,
     priceReducer,
     restaurantReducer,
+    randomDishReducer,
+    randomRestaurantReducer,
     // sampleReducer,
 });
 

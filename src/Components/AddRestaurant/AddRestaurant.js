@@ -33,7 +33,8 @@ class AddRestaurant extends Component {
         });
     }
 
-    storeCategory = () => {
+    storeCategory = (event) => {
+        event.preventDefault();
         this.setState({
             ...this.state,
             categories: [...this.state.categories, Number(this.state.category_id)],

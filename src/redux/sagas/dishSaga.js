@@ -18,11 +18,13 @@ function* fetchDishes() {
 function* fetchRandomDish() {
     try {
         let response = yield axios.get('/dishes/random');
-        yield Swal.fire('Get started making: ', response.data.dish);
-        // yield put({
-        //     type: 'SET_RANDOM_DISH',
-        //     payload: response.data
-        // });
+        yield put({
+            type: 'CLEAR_RANDOM_RESTAURANT'
+        });
+        yield put({
+            type: 'SET_RANDOM_DISH',
+            payload: response.data
+        });
     } catch (error) {
         yield Swal.fire('Error getting random dish.');
         yield console.log('Error in dishSaga: ', error);

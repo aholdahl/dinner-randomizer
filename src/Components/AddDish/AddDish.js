@@ -37,14 +37,16 @@ class AddDish extends Component {
         });
     }
 
-    storeCategory = () => {
+    storeCategory = (event) => {
+        event.preventDefault();
         this.setState({
             ...this.state,
             categories: [...this.state.categories, Number(this.state.category_id)],
         });
     }
 
-    storeIngredient = () => {
+    storeIngredient = (event) => {
+        event.preventDefault();
         this.setState({
             ...this.state,
             ingredients: [...this.state.ingredients, Number(this.state.ingredient_id)],

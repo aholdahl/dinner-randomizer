@@ -40,7 +40,7 @@ router.post('/', async (req, res) => {
         let result = await connection.query(queryText, [req.body.restaurant, req.body.menu_url, req.body.image, req.body.address, req.body.phone_number, req.body.delivers, req.body.reservation, req.body.price_id]);
         let restaurant_id = result.rows[0].id;
         for (let category of req.body.categories) {
-            await connection.query(`INSERT INTO "restaurant_category" ("restaurant_id", "category_id") VALUES ($1, $2);`, [restaurant_id, category.id])
+            await connection.query(`INSERT INTO "restaurant_category" ("restaurant_id", "category_id") VALUES ($1, $2);`, [restaurant_id, category])
         };
         await connection.query('COMMIT;');
         res.sendStatus(200);

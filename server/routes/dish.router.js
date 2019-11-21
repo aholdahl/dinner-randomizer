@@ -33,17 +33,17 @@ router.get('/random', (req, res) => {
 
 router.post('/', async (req, res) => {
     console.log('In dishRouter POST request: ', req.body);
-    let queryText = `INSERT INTO "dish" ("dish", "recipe_url", "image", "prep_time", "servings", "difficulty_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING id";`
+    let queryText = `INSERT INTO "dish" ("dish", "recipe_url", "image", "prep_time", "servings", "difficulty_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id";`
     const connection = await pool.connect();
     try {
         await connection.query('BEGIN;');
-        let result = await connection.query(queryText, [req.body.dish, req.body.recipe_url, req.body.image, req.body.prep_time, req.body.servings || null, req.body.difficulty_id || null])
+        let result = await connection.query(queryText, [req.body.dish, req.body.recipe_url, req.body.image, req.body.prep_time, Number(req.body.servings) || null, Number(req.body.difficulty_id) || null])
         let dish_id = result.rows[0].id;
         for (let category of req.body.categories) {
-            await connection.query(`INSERT INTO "dish_category" ("dish_id", "category_id") VALUES ($1, $2);`, [dish_id, category.id])
+                await connection.query(`INSERT INTO "dish_category" ("dish_id", "category_id") VALUES ($1, $2);`, [dish_id, category])
         };
         for (let ingredient of req.body.ingredients) {
-            await connection.query(`INSERT INTO "dish_ingredient" ("dish_id", "ingredient_id") VALUES ($1, $2);`, [dish_id, ingredient.id])
+            await connection.query(`INSERT INTO "dish_ingredient" ("dish_id", "ingredient_id") VALUES ($1, $2);`, [dish_id, ingredient])
         };
         await connection.query('COMMIT;');
         res.sendStatus(200);
