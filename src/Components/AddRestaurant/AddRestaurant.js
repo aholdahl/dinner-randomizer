@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Swal from 'sweetalert2';
 
-// import CategoryDropdown from '../CategoryDropdown/CategoryDropdown.js';
+import CategoryDropdown from '../CategoryDropdown/CategoryDropdown.js';
 import PriceDropdown from '../PriceDropdown/PriceDropdown.js';
 
 class AddRestaurant extends Component {
@@ -16,13 +16,27 @@ class AddRestaurant extends Component {
         delivers: false,
         reservation: false,
         price_id: 0,
-        // category: 0
+        category_id: 0,
+        categories: []
+    }
+
+    componentDidMount() {
+        this.props.dispatch({
+            type: 'FETCH_CATEGORIES'
+        })
     }
 
     handleRestaurantInput = (event, property) => {
         this.setState({
             ...this.state,
             [property]: event.target.value
+        });
+    }
+
+    storeCategory = () => {
+        this.setState({
+            ...this.state,
+            categories: [...this.state.categories, Number(this.state.category_id)],
         });
     }
 
@@ -64,13 +78,22 @@ class AddRestaurant extends Component {
                     delivers: false,
                     reservation: false,
                     price_id: 0,
-                    // category: 0
+                    category_id: 0,
+                    categories: []
                 });
             }
         });
     }
 
     render() {
+
+        const renderSelectedCategories = this.props.categories.map((category)=>{
+            if(this.state.categories.indexOf(category.id) >= 0){
+                return (<p key={category.id}>{category.category}</p>)
+            }
+            return null;
+        })
+
         return (
             <form onSubmit={this.submitNewRestaurant}>
                 {/* <h2>Add Restaurant</h2> */}
@@ -99,13 +122,20 @@ class AddRestaurant extends Component {
                 <label>Price Range</label>
                 <PriceDropdown handleInput={this.handleRestaurantInput} selectedPrice={this.state.price_id} />
                 <br />
-                {/* <label>Category</label>
+                <label>Category</label>
                 <CategoryDropdown handleInput={this.handleRestaurantInput} selectedCategory={this.state.category} />
-                <br /> */}
+                <button title="Click here to add tag to new restaurant" onClick={this.storeCategory}>Add Tag</button>
+                {renderSelectedCategories}
+                <br />
                 <button title="Click here to save this restaurant" type="submit">Add New Restaurant</button>
             </form>
         );
     }
 }
 
-export default connect()(AddRestaurant);
+const mapStateToProps = (store) => {
+    return {
+        categories: store.categoryReducer
+    }
+}
+export default connect(mapStateToProps)(AddRestaurant);

@@ -119,7 +119,8 @@ class ManageOptions extends Component {
                             <th>Prep Time</th>
                             <th>Servings</th>
                             <th>Difficulty</th>
-                            {/* <th>Category</th> */}
+                            <th>Categories</th>
+                            <th>Ingredients</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -132,7 +133,12 @@ class ManageOptions extends Component {
                                     <td>{dish.prep_time}</td>
                                     <td>{dish.servings}</td>
                                     <td>{dish.difficulty}</td>
-                                    {/* <td>{dish.category}</td> */}
+                                    <td>{dish.categories[0] !== null && dish.categories.map((category) => {
+                                        return <p key={category.id}>{category.category}</p>
+                                    })}</td>   
+                                    <td>{dish.ingredients[0] !== null && dish.ingredients.map((ingredient) => {
+                                        return <p key={ingredient.id}>{ingredient.ingredient}</p>
+                                    })}</td>                              
                                 </tr>
                             )
                         })}
@@ -152,7 +158,7 @@ class ManageOptions extends Component {
                             <th>Delivers?</th>
                             <th>Reservation?</th>
                             <th>Price Range</th>
-                            {/* <th>Category</th> */}
+                            <th>Categories</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -167,7 +173,9 @@ class ManageOptions extends Component {
                                     <td><input type="checkbox" checked={restaurant.delivers} disabled={true}/></td>
                                     <td><input type="checkbox" checked={restaurant.reservation} disabled={true} /></td>
                                     <td>{restaurant.price}</td>
-                                    {/* <td>{restaurant.category}</td> */}
+                                    <td>{restaurant.categories[0] !== null && restaurant.categories.map((category)=>{
+                                        return <p key={category.id}>{category.category}</p>
+                                    })}</td>
                                 </tr>
                             )
                         })}
