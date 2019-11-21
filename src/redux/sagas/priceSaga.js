@@ -28,9 +28,37 @@ function* addNewPrice(action) {
     }
 }
 
+function* updatePrice(action) {
+    try {
+        yield axios.put('/prices', action.payload);
+        yield put({
+            type: 'FETCH_PRICES'
+        });
+        yield Swal.fire('Price updated successfully!');
+    } catch (error) {
+        yield Swal.fire('Error updating price.');
+        yield console.log('Error in priceSaga: ', error);
+    }
+}
+
+function* deletePrice(action) {
+    try {
+        yield axios.delete(`/prices/${action.payload.id}`);
+        yield put({
+            type: 'FETCH_PRICES'
+        });
+        yield Swal.fire('Price deleted successfully!');
+    } catch (error) {
+        yield Swal.fire('Error deleting price.');
+        yield console.log('Error in priceSaga: ', error);
+    }
+}
+
 function* priceSagaRoot() {
     yield takeEvery('FETCH_PRICES', fetchPrices);
     yield takeEvery('ADD_NEW_PRICE', addNewPrice);
+    yield takeEvery('UPDATE_PRICE', updatePrice);
+    yield takeEvery('DELETE_PRICE', deletePrice);
 }
 
 export default priceSagaRoot;

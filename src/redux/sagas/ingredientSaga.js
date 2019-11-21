@@ -28,9 +28,37 @@ function* addNewIngredient(action) {
     }
 }
 
+function* updateIngredient(action) {
+    try {
+        yield axios.put('/ingredients', action.payload);
+        yield put({
+            type: 'FETCH_INGREDIENTS'
+        });
+        yield Swal.fire('Ingredient updated successfully!');
+    } catch (error) {
+        yield Swal.fire('Error updating ingredient.');
+        yield console.log('Error in ingredientSaga: ', error);
+    }
+}
+
+function* deleteIngredient(action) {
+    try {
+        yield axios.delete(`/ingredients/${action.payload.id}`);
+        yield put({
+            type: 'FETCH_INGREDIENTS'
+        });
+        yield Swal.fire('Ingredient deleted successfully!');
+    } catch (error) {
+        yield Swal.fire('Error deleting ingredient.');
+        yield console.log('Error in ingredientSaga: ', error);
+    }
+}
+
 function* ingredientSagaRoot() {
     yield takeEvery('FETCH_INGREDIENTS', fetchIngredients);
     yield takeEvery('ADD_NEW_INGREDIENT', addNewIngredient);
+    yield takeEvery('UPDATE_INGREDIENT', updateIngredient);
+    yield takeEvery('DELETE_INGREDIENT', deleteIngredient);
 }
 
 export default ingredientSagaRoot;

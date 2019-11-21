@@ -42,10 +42,38 @@ function* addNewDish(action) {
     }
 }
 
+function* updateDish(action) {
+    try {
+        yield axios.put('/dishes', action.payload);
+        yield put({
+            type: 'FETCH_DISHES'
+        });
+        yield Swal.fire('Dish updated successfully!');
+    } catch (error) {
+        yield Swal.fire('Error updating dish.');
+        yield console.log('Error in dishSaga: ', error);
+    }
+}
+
+function* deleteDish(action) {
+    try {
+        yield axios.delete(`/dishes/${action.payload.id}`);
+        yield put({
+            type: 'FETCH_DISHES'
+        });
+        yield Swal.fire('Dish deleted successfully!');
+    } catch (error) {
+        yield Swal.fire('Error deleting dish.');
+        yield console.log('Error in dishSaga: ', error);
+    }
+}
+
 function* dishSagaRoot() {
     yield takeEvery('FETCH_DISHES', fetchDishes);
     yield takeEvery('FETCH_RANDOM_DISH', fetchRandomDish);
     yield takeEvery('ADD_NEW_DISH', addNewDish);
+    yield takeEvery('UPDATE_DISH', updateDish);
+    yield takeEvery('DELETE_DISH', deleteDish);
 }
 
 export default dishSagaRoot;

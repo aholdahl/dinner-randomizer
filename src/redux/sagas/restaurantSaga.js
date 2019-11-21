@@ -42,10 +42,38 @@ function* addNewRestaurant(action) {
     }
 }
 
+function* updateRestaurant(action) {
+    try {
+        yield axios.put('/restaurants', action.payload);
+        yield put({
+            type: 'FETCH_RESTAURANTS'
+        });
+        yield Swal.fire('Restaurant updated successfully!');
+    } catch (error) {
+        yield Swal.fire('Error updating restaurant.');
+        yield console.log('Error in restaurantSaga: ', error);
+    }
+}
+
+function* deleteRestaurant(action) {
+    try {
+        yield axios.delete(`/restaurants/${action.payload.id}`);
+        yield put({
+            type: 'FETCH_RESTAURANTS'
+        });
+        yield Swal.fire('Restaurant deleted successfully!');
+    } catch (error) {
+        yield Swal.fire('Error deleting restaurant.');
+        yield console.log('Error in restaurantSaga: ', error);
+    }
+}
+
 function* restaurantSagaRoot() {
     yield takeEvery('FETCH_RESTAURANTS', fetchRestaurants);
-    yield takeEvery('ADD_NEW_RESTAURANT', addNewRestaurant);
     yield takeEvery('FETCH_RANDOM_RESTAURANT', fetchRandomRestaurant);
+    yield takeEvery('ADD_NEW_RESTAURANT', addNewRestaurant);
+    yield takeEvery('UPDATE_RESTAURANT', updateRestaurant);
+    yield takeEvery('DELETE_RESTAURANT', deleteRestaurant);
 }
 
 export default restaurantSagaRoot;
