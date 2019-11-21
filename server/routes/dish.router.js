@@ -19,12 +19,12 @@ router.get('/', (req, res) => {
 });
 
 router.get('/random', (req, res) => {
-    let randomizeMe = randomNumber(0, (sampleData.length - 1));
-    console.log('In dishRouter GET-random request: ', randomizeMe);
-    let queryText = `SELECT "dish"."id", "dish", "recipe_url", "image", "prep_time", "servings", "difficulty_id", "difficulty" FROM "dish" JOIN "difficulty" ON "difficulty"."id" = "dish"."difficulty_id" WHERE "id" = $1;`
-    pool.query(queryText, [randomizeMe])
+    console.log('In dishRouter GET-random request');
+    let queryText = `SELECT "dish"."id", "dish", "recipe_url", "image", "prep_time", "servings", "difficulty_id", "difficulty" FROM "dish" JOIN "difficulty" ON "difficulty"."id" = "dish"."difficulty_id";`
+    pool.query(queryText)
         .then((result) => {
-            res.send(result.rows);
+            let randomizeMe = randomNumber(0, (Number(result.rows.length)) - 1);
+            res.send(result.rows[randomizeMe]);
         }).catch((error) => {
             console.log(error);
             res.sendStatus(500);

@@ -19,16 +19,16 @@ router.get('/all', (req, res) => {
 });
 
 router.get('/random', (req, res) => {
-    let randomizeMe = randomNumber(0, (sampleData.length - 1));
-    console.log('In restaurantRouter GET-random request: ', randomizeMe);
-    let queryText = `SELECT * FROM "restaurant" WHERE "id" = $1;`
-    pool.query(queryText, [randomizeMe])
-        .then((result) => {
-            res.send(result.rows);
-        }).catch((error) => {
-            console.log(error);
-            res.sendStatus(500);
-        });
+        console.log('In restaurantRouter GET-random request');
+        let queryText = `SELECT * FROM "restaurant";`
+        pool.query(queryText)
+            .then((result) => {
+                let randomizeMe = randomNumber(0, (Number(result.rows.length)) -1);
+                res.send(result.rows[randomizeMe]);
+            }).catch((error) => {
+                console.log(error);
+                res.sendStatus(500);
+            });
 });
 
 router.post('/', (req, res) => {
