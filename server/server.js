@@ -14,6 +14,8 @@ const difficultyRouter = require('./routes/difficulty.router.js');
 app.use('/difficulty', difficultyRouter);
 const dishRouter = require('./routes/dish.router.js');
 app.use('/dishes', dishRouter);
+const ingredientRouter = require('./routes/ingredient.router.js');
+app.use('/ingredients', ingredientRouter);
 const priceRouter = require('./routes/price.router.js');
 app.use('/prices', priceRouter);
 const restaurantRouter = require('./routes/restaurant.router.js');

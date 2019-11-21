@@ -8,6 +8,7 @@ class ManageOptions extends Component {
     state = {
         category: '',
         difficulty: '',
+        ingredient: '',
         price: ''
     }
 
@@ -17,6 +18,9 @@ class ManageOptions extends Component {
         });
         this.props.dispatch({
             type: 'FETCH_DIFFICULTY'
+        });
+        this.props.dispatch({
+            type: 'FETCH_INGREDIENTS'
         });
         this.props.dispatch({
             type: 'FETCH_PRICES'
@@ -46,6 +50,11 @@ class ManageOptions extends Component {
             this.props.dispatch({
                 type: 'ADD_NEW_DIFFICULTY',
                 payload: {difficulty: this.state.difficulty}
+            })
+        } else if (property === 'ingredient') {
+            this.props.dispatch({
+                type: 'ADD_NEW_INGREDIENT',
+                payload: { ingredient: this.state.ingredient }
             })
         } else if (property === 'price'){
             this.props.dispatch({
@@ -78,6 +87,15 @@ class ManageOptions extends Component {
                 {this.props.store.difficultyReducer.map((level)=>{
                     return (
                         <p key={level.id}>{level.difficulty}</p>
+                    )
+                })}
+                <hr />
+                <h3>Ingredients</h3>
+                <input title="Type new ingredient option here" placeholder="Enter new ingredient" type="text" onChange={(event) => { this.handleChange(event, 'ingredient') }} value={this.state.ingredient} />
+                <button onClick={() => { this.handleSubmit('ingredient') }}>Add New Ingredient</button>
+                {this.props.store.ingredientReducer.map((ingredient) => {
+                    return (
+                        <p key={ingredient.id}>{ingredient.ingredient}</p>
                     )
                 })}
                 <hr />
