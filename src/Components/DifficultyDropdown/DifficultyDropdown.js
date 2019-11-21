@@ -16,7 +16,7 @@ class DifficultyDropdown extends Component {
         })
 
         return (
-            <select title="Select difficulty level here" onChange={(event) => { this.props.handleInput(event, 'difficulty') }} value={this.props.selectedDifficulty}>
+            <select title="Select difficulty level here" onChange={(event) => { this.props.handleInput(event, 'difficulty_id') }} value={this.props.selectedDifficulty}>
                 <option value={0}>Select a difficulty level</option>
                 {renderDifficultyDropdown}
             </select>

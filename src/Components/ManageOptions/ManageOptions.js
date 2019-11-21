@@ -133,7 +133,7 @@ class ManageOptions extends Component {
                             <th>Phone Number</th>
                             <th>Delivers?</th>
                             <th>Reservation?</th>
-                            <th>Price</th>
+                            <th>Price Range</th>
                             {/* <th>Category</th> */}
                         </tr>
                     </thead>
@@ -143,11 +143,11 @@ class ManageOptions extends Component {
                                 <tr key={restaurant.id}>
                                     <td>{restaurant.restaurant}</td>
                                     <td>{restaurant.menu_url}</td>
-                                    <td>{restaurant.image}</td>
+                                    <td><img src={restaurant.image} alt={restaurant.restaurant}/></td>
                                     <td>{restaurant.address}</td>
                                     <td>{restaurant.phone_number}</td>
-                                    <td>{restaurant.delivers}</td>
-                                    <td>{restaurant.reservation}</td>
+                                    <td><input type="checkbox" checked={restaurant.delivers} disabled={true}/></td>
+                                    <td><input type="checkbox" checked={restaurant.reservation} disabled={true} /></td>
                                     <td>{restaurant.price}</td>
                                     {/* <td>{restaurant.category}</td> */}
                                 </tr>

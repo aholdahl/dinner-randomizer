@@ -16,7 +16,7 @@ class CategoryDropdown extends Component {
         })
 
         return (
-            <select title="Select category here" onChange={(event) => { this.props.handleInput(event, 'category') }} value={this.props.selectedCategory}>
+            <select title="Select category here" onChange={(event) => { this.props.handleInput(event, 'category_id') }} value={this.props.selectedCategory}>
                 <option value={0}>Select a category</option>
                 {renderCategoryDropdown}
             </select>

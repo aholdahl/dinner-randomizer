@@ -8,7 +8,7 @@ randomNumber = (min, max) => {
 
 router.get('/', (req, res) => {
     console.log('In dishRouter GET request');
-    let queryText = `SELECT * FROM "dish";`
+    let queryText = `SELECT "dish"."id", "dish", "recipe_url", "image", "prep_time", "servings", "difficulty_id", "difficulty" FROM "dish" JOIN "difficulty" ON "difficulty"."id" = "dish"."difficulty_id" ORDER BY "dish" ASC;`
     pool.query(queryText)
         .then((result) => {
             res.send(result.rows);
@@ -21,7 +21,7 @@ router.get('/', (req, res) => {
 router.get('/random', (req, res) => {
     let randomizeMe = randomNumber(0, (sampleData.length - 1));
     console.log('In dishRouter GET-random request: ', randomizeMe);
-    let queryText = `SELECT * FROM "dish" WHERE "id" = $1;`
+    let queryText = `SELECT "dish"."id", "dish", "recipe_url", "image", "prep_time", "servings", "difficulty_id", "difficulty" FROM "dish" JOIN "difficulty" ON "difficulty"."id" = "dish"."difficulty_id" WHERE "id" = $1;`
     pool.query(queryText, [randomizeMe])
         .then((result) => {
             res.send(result.rows);
@@ -34,7 +34,7 @@ router.get('/random', (req, res) => {
 router.post('/', (req, res) => {
     console.log('In dishRouter POST request: ', req.body);
     let queryText = `INSERT INTO "dish" ("dish", "recipe_url", "image", "prep_time", "servings", "difficulty_id") VALUES ($1, $2, $3, $4, $5, $6);`
-    pool.query(queryText, [req.body.dish, req.body.recipe_url, req.body.image, req.body.prep_time, req.body.servings, req.body.difficulty_id])
+    pool.query(queryText, [req.body.dish, req.body.recipe_url, req.body.image, req.body.prep_time, req.body.servings || null, req.body.difficulty_id || null])
         .then((result) => {
             res.sendStatus(200);
         }).catch((error) => {

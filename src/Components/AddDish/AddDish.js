@@ -59,6 +59,7 @@ class AddDish extends Component {
                 <br />
                 <label>Recipe URL</label>
                 <input title="Type recipe URL here" placeholder="Enter recipe url here" type="text" onChange={(event)=>{this.handleDishInput(event, 'recipe_url')}} value={this.state.recipe_url}/>
+                <br/>
                 <label>Image URL</label>
                 {/* Future goal: use third-party API to upload photos directly to site */}
                 <input title="Type image url here" placeholder="Enter image url here" type="text" onChange={(event) => { this.handleDishInput(event, 'image') }} value={this.state.image}/>

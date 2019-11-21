@@ -16,7 +16,7 @@ class PriceDropdown extends Component {
         })
 
         return (
-            <select title="Select price range here" onChange={(event) => { this.props.handleInput(event, 'price') }} value={this.props.selectedPrice}>
+            <select title="Select price range here" onChange={(event) => { this.props.handleInput(event, 'price_id') }} value={this.props.selectedPrice}>
                 <option value={0}>Select a price range</option>
                 {renderPriceDropdown}
             </select>
