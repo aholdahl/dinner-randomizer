@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import AddRestaurant from '../AddRestaurant/AddRestaurant.js';
+import RestaurantItem from './RestaurantItem.js';
 
 class ManageRestaurants extends Component {
 
@@ -27,24 +28,14 @@ class ManageRestaurants extends Component {
                             <th>Reservation?</th>
                             <th>Price Range</th>
                             <th>Categories</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
                         {this.props.restaurants.map((restaurant) => {
                             return (
-                                <tr key={restaurant.id}>
-                                    <td>{restaurant.restaurant}</td>
-                                    <td>{restaurant.menu_url}</td>
-                                    <td><img src={restaurant.image} alt={restaurant.restaurant} /></td>
-                                    <td>{restaurant.address}</td>
-                                    <td>{restaurant.phone_number}</td>
-                                    <td><input type="checkbox" checked={restaurant.delivers} disabled={true} /></td>
-                                    <td><input type="checkbox" checked={restaurant.reservation} disabled={true} /></td>
-                                    <td>{restaurant.price}</td>
-                                    <td>{restaurant.categories[0] !== null && restaurant.categories.map((category) => {
-                                        return <p key={category.id}>{category.category}</p>
-                                    })}</td>
-                                </tr>
+                                <RestaurantItem restaurant={restaurant}/>
                             )
                         })}
                     </tbody>
