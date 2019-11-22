@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import AddDish from '../AddDish/AddDish.js';
+import DishItem from './DishItem.js';
 
 class ManageDishes extends Component {
 
@@ -26,25 +27,14 @@ class ManageDishes extends Component {
                             <th>Difficulty</th>
                             <th>Categories</th>
                             <th>Ingredients</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
                         {this.props.dishes.map((dish) => {
                             return (
-                                <tr key={`dish ${dish.id}`}>
-                                    <td>{dish.dish}</td>
-                                    <td>{dish.recipe_url}</td>
-                                    <td>{dish.image}</td>
-                                    <td>{dish.prep_time}</td>
-                                    <td>{dish.servings}</td>
-                                    <td>{dish.difficulty}</td>
-                                    <td>{dish.categories[0] !== null && dish.categories.map((category) => {
-                                        return <p key={`category ${category.id}`}>{category.category}</p>
-                                    })}</td>
-                                    <td>{dish.ingredients[0] !== null && dish.ingredients.map((ingredient) => {
-                                        return <p key={`ingredient ${ingredient.id}`}>{ingredient.ingredient}</p>
-                                    })}</td>
-                                </tr>
+                                <DishItem dish={dish}/>
                             )
                         })}
                     </tbody>
