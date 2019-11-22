@@ -4,6 +4,7 @@ import ManageDishes from '../ManageDishes/ManageDishes.js';
 import ManageRestaurants from '../ManageRestaurants/ManageRestaurants.js';
 import ManageCategories from '../ManageCategories/ManageCategories.js';
 import ManageDifficulty from '../ManageDifficulty/ManageDifficulty.js';
+import ManageIngredients from '../ManageIngredients/ManageIngredients.js';
 
 class ManageOptions extends Component {
 
@@ -76,6 +77,7 @@ class ManageOptions extends Component {
                 <h2>Manage Options</h2>
                 <ManageCategories/>
                 <ManageDifficulty/>
+                <ManageIngredients/>
                 {/* <h3>Categories</h3>
                 <input title="Type new category option here" placeholder="Enter new category label" type="text" onChange={(event) => { this.handleChange(event, 'category') }} value={this.state.category}/>
                 <button onClick={() => { this.handleSubmit('category') }}>Add New Category</button>
@@ -94,7 +96,7 @@ class ManageOptions extends Component {
                     )
                 })}
                 <hr /> */}
-                <h3>Ingredients</h3>
+                {/* <h3>Ingredients</h3>
                 <input title="Type new ingredient option here" placeholder="Enter new ingredient" type="text" onChange={(event) => { this.handleChange(event, 'ingredient') }} value={this.state.ingredient} />
                 <button onClick={() => { this.handleSubmit('ingredient') }}>Add New Ingredient</button>
                 {this.props.store.ingredientReducer.map((ingredient) => {
@@ -102,7 +104,7 @@ class ManageOptions extends Component {
                         <p key={ingredient.id}>{ingredient.ingredient}</p>
                     )
                 })}
-                <hr />
+                <hr /> */}
                 <h3>Price Ranges</h3>
                 <input title="Type new price option here" placeholder="Enter new price range" type="text" onChange={(event) => { this.handleChange(event, 'price') }} value={this.state.price} />
                 <button onClick={() => { this.handleSubmit('price') }}>Add New Price</button>
