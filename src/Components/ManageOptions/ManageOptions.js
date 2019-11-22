@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ManageDishes from '../ManageDishes/ManageDishes.js';
 import ManageRestaurants from '../ManageRestaurants/ManageRestaurants.js';
+import ManageCategories from '../../ManageCategories/ManageCategories.js';
 
 class ManageOptions extends Component {
 
@@ -72,7 +73,8 @@ class ManageOptions extends Component {
         return (
             <>
                 <h2>Manage Options</h2>
-                <h3>Categories</h3>
+                <ManageCategories/>
+                {/* <h3>Categories</h3>
                 <input title="Type new category option here" placeholder="Enter new category label" type="text" onChange={(event) => { this.handleChange(event, 'category') }} value={this.state.category}/>
                 <button onClick={() => { this.handleSubmit('category') }}>Add New Category</button>
                 {this.props.store.categoryReducer.map((category)=>{
@@ -80,7 +82,7 @@ class ManageOptions extends Component {
                         <p key={category.id}>{category.category}</p>
                         )
                 })}
-                <hr/>
+                <hr/> */}
                 <h3>Difficulty Levels</h3>
                 <input title="Type new difficulty option here" placeholder="Enter new difficulty level" type="text" onChange={(event) => { this.handleChange(event, 'difficulty') }} value={this.state.difficulty} />
                 <button onClick={() => { this.handleSubmit('difficulty') }}>Add New Difficulty</button>
