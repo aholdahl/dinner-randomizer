@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 class PriceDropdown extends Component {
 
-    componentDidMount(){
+    componentDidMount() {
         this.props.dispatch({
             type: 'FETCH_PRICES'
         });
@@ -11,7 +11,7 @@ class PriceDropdown extends Component {
 
     render() {
 
-        const renderPriceDropdown = this.props.prices.map((range)=>{
+        const renderPriceDropdown = this.props.prices.map((range) => {
             return (<option key={range.id} value={range.id}>{range.price}</option>);
         })
 

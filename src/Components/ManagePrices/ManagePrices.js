@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import CategoryItem from './CategoryItem.js';
+import PriceItem from './PriceItem.js';
 
-class ManageCategories extends Component {
+class ManagePrices extends Component {
 
     state = {
-        category: ''
+        price: ''
     }
 
     componentDidMount() {
         this.props.dispatch({
-            type: 'FETCH_CATEGORIES'
+            type: 'FETCH_PRICES'
         });
     }
 
@@ -23,8 +23,8 @@ class ManageCategories extends Component {
 
     handleSubmit = (property) => {
         this.props.dispatch({
-            type: 'ADD_NEW_CATEGORY',
-            payload: { category: this.state.category }
+            type: 'ADD_NEW_PRICE',
+            payload: { price: this.state.price }
         })
         this.setState({
             ...this.state,
@@ -35,21 +35,21 @@ class ManageCategories extends Component {
     render() {
         return (
             <>
-                <h3>Categories</h3>
-                <input title="Type new category option here" placeholder="Enter new category label" type="text" onChange={(event) => { this.handleChange(event, 'category') }} value={this.state.category} />
-                <button onClick={() => { this.handleSubmit('category') }}>Add New Category</button>
+                <h3>Price Ranges</h3>
+                <input title="Type new price option here" placeholder="Enter new price range" type="text" onChange={(event) => { this.handleChange(event, 'price') }} value={this.state.price} />
+                <button onClick={() => { this.handleSubmit('price') }}>Add New Price</button>
                 <table>
                     <thead>
                         <tr>
-                            <th>Category</th>
+                            <th>Price</th>
                             <th>Edit</th>
                             <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {this.props.categories.map((category) => {
+                        {this.props.price.map((price) => {
                             return (
-                                <CategoryItem category={category} />
+                                <PriceItem price={price} />
                             )
                         })}
                     </tbody>
@@ -62,8 +62,8 @@ class ManageCategories extends Component {
 
 const mapStateToProps = (store) => {
     return {
-        categories: store.categoryReducer
+        price: store.priceReducer
     }
 }
 
-export default connect(mapStateToProps)(ManageCategories);
+export default connect(mapStateToProps)(ManagePrices);

@@ -7,7 +7,7 @@ class CategoryItem extends Component {
         category: ''
     }
 
-    toggleEditMode = ()=>{
+    toggleEditMode = () => {
         this.setState({
             ...this.state,
             editMode: !this.state.editMode,
@@ -15,14 +15,14 @@ class CategoryItem extends Component {
         })
     }
 
-    setChanges = (event)=>{
+    setChanges = (event) => {
         this.setState({
             ...this.state,
             category: event.target.value
         })
     }
 
-    updateCategory = ()=>{
+    updateCategory = () => {
         this.props.dispatch({
             type: 'UPDATE_CATEGORY',
             payload: {
@@ -33,7 +33,7 @@ class CategoryItem extends Component {
         this.toggleEditMode();
     }
 
-    deleteCategory = ()=>{
+    deleteCategory = () => {
         this.props.dispatch({
             type: 'DELETE_CATEGORY',
             payload: {
@@ -42,12 +42,12 @@ class CategoryItem extends Component {
         })
     }
 
-    render (){
+    render() {
         return (
             <>
                 {this.state.editMode ?
                     <tr key={this.props.category.id} >
-                        <td><input value={this.state.category} onChange={this.setChanges}/></td>
+                        <td><input value={this.state.category} onChange={this.setChanges} /></td>
                         <td><button onClick={this.updateCategory}>Save</button></td>
                         <td><button onClick={this.deleteCategory}>Delete</button></td>
                     </tr >

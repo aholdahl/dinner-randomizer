@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 class CategoryDropdown extends Component {
 
-    componentDidMount(){
+    componentDidMount() {
         this.props.dispatch({
             type: 'FETCH_CATEGORIES'
         });
@@ -11,7 +11,7 @@ class CategoryDropdown extends Component {
 
     render() {
 
-        const renderCategoryDropdown = this.props.category.map((type)=>{
+        const renderCategoryDropdown = this.props.category.map((type) => {
             return (<option key={type.id} value={type.id}>{type.category}</option>)
         })
 

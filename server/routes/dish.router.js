@@ -40,7 +40,7 @@ router.post('/', async (req, res) => {
         let result = await connection.query(queryText, [req.body.dish, req.body.recipe_url, req.body.image, req.body.prep_time, Number(req.body.servings) || null, Number(req.body.difficulty_id) || null])
         let dish_id = result.rows[0].id;
         for (let category of req.body.categories) {
-                await connection.query(`INSERT INTO "dish_category" ("dish_id", "category_id") VALUES ($1, $2);`, [dish_id, category])
+            await connection.query(`INSERT INTO "dish_category" ("dish_id", "category_id") VALUES ($1, $2);`, [dish_id, category])
         };
         for (let ingredient of req.body.ingredients) {
             await connection.query(`INSERT INTO "dish_ingredient" ("dish_id", "ingredient_id") VALUES ($1, $2);`, [dish_id, ingredient])

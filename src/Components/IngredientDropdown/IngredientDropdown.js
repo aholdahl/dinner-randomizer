@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 class IngredientDropdown extends Component {
 
-    componentDidMount(){
+    componentDidMount() {
         this.props.dispatch({
             type: 'FETCH_INGREDIENTS'
         });
@@ -11,7 +11,7 @@ class IngredientDropdown extends Component {
 
     render() {
 
-        const renderIngredientDropdown = this.props.ingredients.map((item)=>{
+        const renderIngredientDropdown = this.props.ingredients.map((item) => {
             return (<option key={item.id} value={item.id}>{item.ingredient}</option>)
         })
 

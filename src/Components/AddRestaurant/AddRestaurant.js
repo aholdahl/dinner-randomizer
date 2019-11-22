@@ -88,8 +88,8 @@ class AddRestaurant extends Component {
 
     render() {
 
-        const renderSelectedCategories = this.props.categories.map((category)=>{
-            if(this.state.categories.indexOf(category.id) >= 0){
+        const renderSelectedCategories = this.props.categories.map((category) => {
+            if (this.state.categories.indexOf(category.id) >= 0) {
                 return (<p key={category.id}>{category.category}</p>)
             }
             return null;
@@ -99,14 +99,14 @@ class AddRestaurant extends Component {
             <form onSubmit={this.submitNewRestaurant}>
                 {/* <h2>Add Restaurant</h2> */}
                 <label>Restaurant Name</label>
-                <input required={true} title="Type restaurant name here (required)" placeholder="*Enter restaurant name here" type="text" onChange={(event) => { this.handleRestaurantInput(event, 'restaurant') }} value={this.state.restaurant}/>
+                <input required={true} title="Type restaurant name here (required)" placeholder="*Enter restaurant name here" type="text" onChange={(event) => { this.handleRestaurantInput(event, 'restaurant') }} value={this.state.restaurant} />
                 <br />
                 <label>Menu URL</label>
                 <input title="Type menu url here" placeholder="Enter menu url here" type="text" onChange={(event) => { this.handleRestaurantInput(event, 'menu_url') }} value={this.state.menu_url} />
                 <br />
                 <label>Image URL</label>
                 {/* Future goal: use third-party API to upload photos directly to site */}
-                <input title="Type image url here" placeholder="Enter image url here" type="text" onChange={(event) => { this.handleRestaurantInput(event, 'image') }} value={this.state.image}/>
+                <input title="Type image url here" placeholder="Enter image url here" type="text" onChange={(event) => { this.handleRestaurantInput(event, 'image') }} value={this.state.image} />
                 <br />
                 <label>Address</label>
                 <input title="Type restaurant address here" placeholder="*Enter restaurant address here" type="text" onChange={(event) => { this.handleRestaurantInput(event, 'address') }} value={this.state.address} />
@@ -115,7 +115,7 @@ class AddRestaurant extends Component {
                 <input title="Type restaurant phone number here" placeholder="*Enter restaurant phone number here" type="text" onChange={(event) => { this.handleRestaurantInput(event, 'phone_number') }} value={this.state.phone_number} />
                 <br />
                 <label>Delivers?</label>
-                <input title="Check if this restaurant delivers" type="checkbox" onChange={this.toggleDelivery} checked={this.state.delivers}/>
+                <input title="Check if this restaurant delivers" type="checkbox" onChange={this.toggleDelivery} checked={this.state.delivers} />
                 <br />
                 <label>Reservation?</label>
                 <input title="Check if this restaurant takes reservations" type="checkbox" onChange={this.toggleReservation} checked={this.state.reservation} />

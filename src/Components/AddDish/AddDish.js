@@ -104,23 +104,23 @@ class AddDish extends Component {
             <form onSubmit={this.submitNewDish}>
                 {/* <h2>Add Dish</h2> */}
                 <label>Dish Name</label>
-                <input required={true} title="Type dish name here (required)" placeholder="*Enter dish name here" type="text" onChange={(event) => { this.handleDishInput(event, 'dish') }} value={this.state.dish}/>
+                <input required={true} title="Type dish name here (required)" placeholder="*Enter dish name here" type="text" onChange={(event) => { this.handleDishInput(event, 'dish') }} value={this.state.dish} />
                 <br />
                 <label>Recipe URL</label>
-                <input title="Type recipe URL here" placeholder="Enter recipe url here" type="text" onChange={(event)=>{this.handleDishInput(event, 'recipe_url')}} value={this.state.recipe_url}/>
-                <br/>
+                <input title="Type recipe URL here" placeholder="Enter recipe url here" type="text" onChange={(event) => { this.handleDishInput(event, 'recipe_url') }} value={this.state.recipe_url} />
+                <br />
                 <label>Image URL</label>
                 {/* Future goal: use third-party API to upload photos directly to site */}
-                <input title="Type image url here" placeholder="Enter image url here" type="text" onChange={(event) => { this.handleDishInput(event, 'image') }} value={this.state.image}/>
+                <input title="Type image url here" placeholder="Enter image url here" type="text" onChange={(event) => { this.handleDishInput(event, 'image') }} value={this.state.image} />
                 <br />
                 <label>Estimated Prep Time</label>
                 <input title="Type the estimated prep time here" placeholder="Enter the estimated prep time here" type="text" onChange={(event) => { this.handleDishInput(event, 'prep_time') }} value={this.state.prep_time} />
                 <br />
                 <label>Servings</label>
                 <input title="Type the number of servings here" placeholder="Enter the number of servings here" type="number" onChange={(event) => { this.handleDishInput(event, 'servings') }} value={this.state.servings} />
-                <br/>
+                <br />
                 <label>Difficulty Level</label>
-                <DifficultyDropdown handleInput={this.handleDishInput} selectedDifficulty={this.state.difficulty_id}/>
+                <DifficultyDropdown handleInput={this.handleDishInput} selectedDifficulty={this.state.difficulty_id} />
                 <br />
                 <label>Categories</label>
                 <CategoryDropdown handleInput={this.handleDishInput} selectedCategory={this.state.category} />
