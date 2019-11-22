@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ManageDishes from '../ManageDishes/ManageDishes.js';
 import ManageRestaurants from '../ManageRestaurants/ManageRestaurants.js';
-import ManageCategories from '../../ManageCategories/ManageCategories.js';
+import ManageCategories from '../ManageCategories/ManageCategories.js';
+import ManageDifficulty from '../ManageDifficulty/ManageDifficulty.js';
 
 class ManageOptions extends Component {
 
@@ -74,6 +75,7 @@ class ManageOptions extends Component {
             <>
                 <h2>Manage Options</h2>
                 <ManageCategories/>
+                <ManageDifficulty/>
                 {/* <h3>Categories</h3>
                 <input title="Type new category option here" placeholder="Enter new category label" type="text" onChange={(event) => { this.handleChange(event, 'category') }} value={this.state.category}/>
                 <button onClick={() => { this.handleSubmit('category') }}>Add New Category</button>
@@ -83,7 +85,7 @@ class ManageOptions extends Component {
                         )
                 })}
                 <hr/> */}
-                <h3>Difficulty Levels</h3>
+                {/* <h3>Difficulty Levels</h3>
                 <input title="Type new difficulty option here" placeholder="Enter new difficulty level" type="text" onChange={(event) => { this.handleChange(event, 'difficulty') }} value={this.state.difficulty} />
                 <button onClick={() => { this.handleSubmit('difficulty') }}>Add New Difficulty</button>
                 {this.props.store.difficultyReducer.map((level)=>{
@@ -91,7 +93,7 @@ class ManageOptions extends Component {
                         <p key={level.id}>{level.difficulty}</p>
                     )
                 })}
-                <hr />
+                <hr /> */}
                 <h3>Ingredients</h3>
                 <input title="Type new ingredient option here" placeholder="Enter new ingredient" type="text" onChange={(event) => { this.handleChange(event, 'ingredient') }} value={this.state.ingredient} />
                 <button onClick={() => { this.handleSubmit('ingredient') }}>Add New Ingredient</button>
