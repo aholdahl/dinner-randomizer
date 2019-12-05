@@ -4,7 +4,7 @@ const pool = require('../modules/pool.js');
 
 router.get('/', (req, res) => {
     console.log('In categoryRouter GET request');
-    let queryText = `SELECT * FROM "category";`
+    let queryText = `SELECT * FROM "category" ORDER BY "category" ASC;`
     pool.query(queryText)
         .then((result) => {
             res.send(result.rows);

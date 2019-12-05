@@ -37,7 +37,7 @@ router.post('/', async (req, res) => {
     const connection = await pool.connect();
     try {
         await connection.query('BEGIN;');
-        let result = await connection.query(queryText, [req.body.restaurant, req.body.menu_url, req.body.image, req.body.address, req.body.phone_number, req.body.delivers, req.body.reservation, req.body.price_id]);
+        let result = await connection.query(queryText, [req.body.restaurant, req.body.menu_url, req.body.image, req.body.address, req.body.phone_number, req.body.delivers, req.body.reservation, req.body.price_id || null]);
         let restaurant_id = result.rows[0].id;
         for (let category of req.body.categories) {
             await connection.query(`INSERT INTO "restaurant_category" ("restaurant_id", "category_id") VALUES ($1, $2);`, [restaurant_id, category])

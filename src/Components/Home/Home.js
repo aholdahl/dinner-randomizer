@@ -19,7 +19,7 @@ class Home extends Component {
 
         const renderResults =
             <>
-                <h4>Tonight, how about: </h4>
+                <h4>How about: </h4>
                 {this.props.restaurant.id &&
                     <>
                         <p>{this.props.restaurant.restaurant} - {this.props.restaurant.address}</p>
@@ -37,12 +37,12 @@ class Home extends Component {
             </>
 
         return (
-            <>
+            <section id="randomizer">
                 <h2>Eating In or Dining Out?</h2>
                 <button onClick={this.getRandomDish}>Eating In</button>
                 <button onClick={this.getRandomRestaurant}>Dining Out</button>
                 {this.props.restaurant.id || this.props.dish.id ? renderResults : null}
-            </>
+            </section>
         );
     }
 }
